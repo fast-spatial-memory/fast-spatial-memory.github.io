@@ -1,0 +1,107 @@
+body {
+  font-family: "Google Sans", "Noto Sans", sans-serif;
+}
+
+.publication-title {
+  font-family: "Google Sans", sans-serif;
+}
+
+.publication-authors {
+  font-family: "Google Sans", sans-serif;
+}
+
+.publication-venue {
+  color: #eb002a;
+  font-weight: bold;
+}
+
+.publication-awards {
+  color: #eb002a;
+}
+
+.author-block a {
+  color: inherit;
+}
+
+.publication-links .button {
+  margin: 4px;
+}
+
+/* Section spacing */
+section {
+  padding: 2rem 1.5rem;
+}
+
+.title.is-3 {
+  text-align: center;
+  width: 100%;
+}
+
+/* Result video grids */
+.columns.is-gapless video {
+  max-width: 200px;
+  width: 100%;
+}
+
+/* Placeholder boxes for missing media */
+.placeholder-img {
+  background-color: #e8e8e8;
+  border: 2px dashed #aaa;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+}
+
+.placeholder-video {
+  background-color: #e8e8e8;
+  border: 2px dashed #aaa;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+/* BibTeX box */
+#BibTeX pre {
+  background: #f5f5f5;
+  border-radius: 6px;
+  padding: 1rem;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+
+/* Responsive video container */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container video,
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* dnerf span highlight */
+.dnerf {
+  font-variant: small-caps;
+}
+
+/* Footnote superscripts in authors */
+.author-block sup {
+  font-size: 0.7em;
+}

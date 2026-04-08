@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Fast Spatial Memory with Scalable Elastic Test-Time Training">
+  <meta property="og:title" content="Fast Spatial Memory: Scalable Elastic Test-Time Training for 4D Reconstruction"/>
+  <meta property="og:description" content="Fast Spatial Memory (FSM) — efficient and scalable 4D reconstruction with Elastic Test-Time Training."/>
+  <meta property="og:url" content="https://fast-spatial-memory.github.io/"/>
+  <meta property="og:image" content="static/images/teaser.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="Fast Spatial Memory with Scalable Elastic Test-Time Training">
+  <meta name="twitter:description" content="Fast Spatial Memory (FSM) — efficient and scalable 4D reconstruction with Elastic Test-Time Training.">
+  <meta name="twitter:image" content="static/images/teaser.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="keywords" content="Fast Spatial Memory, 4D Reconstruction, Test-Time Training, ECCV 2026, Neural Rendering">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Fast Spatial Memory</title>
+  <link rel="icon" type="image/png" href="static/images/favicon.png">
+  <link rel="apple-touch-icon" href="static/images/favicon.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script>
+    window.onload = function() { window.scrollTo(0, 0); };
+    window.onbeforeunload = function() { window.scrollTo(0, 0); };
+  </script>
+  <script src="static/js/index.js"></script>
+</head>
+
+<body>
+
+<!-- ===================== HERO / TITLE ===================== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+
+          <h1 class="title is-1 publication-title">
+            Fast Spatial Memory with<br>Scalable Elastic Test-Time Training
+          </h1>
+
+          <div class="is-size-4 publication-authors" style="color:#209cee;">
+            <!-- TODO: Replace with actual author names and links -->
+            <span class="author-block" style="padding-left:30px">
+              <a href="https://mars-tin.github.io/">Ziqiao Ma<sup>1, 2</sup>*</a>
+            </span>&nbsp;
+            <span class="author-block" style="padding-left:30px">
+              <a href="https://unicorn53547.github.io/">Xueyang Yu<sup>3</sup>*</a>
+            </span>&nbsp;
+            <span class="author-block" style="padding-left:30px">
+              <a href="https://haoyuzhen.com/">Haoyu Zhen<sup>3</sup></a>
+            </span>
+            <br>
+            <span class="author-block" style="padding-left:30px">
+              <a href="https://yyuncong.github.io/">Yuncong Yang<sup>3</sup></a>
+            </span>&nbsp;
+            <span class="author-block" style="padding-left:30px">
+              <a href="https://web.eecs.umich.edu/~chaijy/">Joyce Chai<sup>2</sup></a>
+            </span>&nbsp;
+            <span class="author-block" style="padding-left:30px">
+              <a href="https://people.csail.mit.edu/ganchuang/">Chuang Gan<sup>1,3</sup></a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors" >
+            <!-- TODO: Replace with actual institution names -->
+            <span class="author-block">MIT-IBM Watson AI Lab<sup>1</sup></span> &nbsp;&nbsp;&nbsp;
+            <span class="author-block">University of Michigan<sup>2</sup></span> &nbsp;&nbsp;&nbsp;
+            <span class="author-block">University of Massachusetts Amherst<sup>3</sup></span> &nbsp;
+            <br>* Equal Contribution
+          </div>
+
+          
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- Paper link -->
+              <span class="link-block">
+                <a href="static/paper.pdf" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- arXiv link -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- GitHub link -->
+              <span class="link-block">
+                <a href="https://github.com/Mars-tin/fast-spatial-mem" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <!-- Hugging Face link -->
+              <span class="link-block">
+                <a href="https://huggingface.co/marstin/fast-spatial-mem" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <img style="max-width:16px;" src="static/hf_fa.ico" alt="Hugging Face"/>
+                  </span>
+                  <span>Models</span>
+                </a>
+              </span>
+
+              <!-- Blog link -->
+              <span class="link-block">
+                <a href="https://mars-tin.github.io/blogs/posts/elastic_ttt.html" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-blog"></i></span>
+                  <span>Blog</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== TL;DR ===================== -->
+<section class="hero is-small">
+  <div class="body">
+    <div class="container">
+      <h2 class="title is-3">TL;DR</h2>
+
+      <div class="content has-text-justified" style="margin: auto; width: 70%;">
+        Large Chunk Test-Time Training (LaCT) has shown strong performance on long-context 3D reconstruction,
+        but its fully plastic inference-time updates remain vulnerable to catastrophic forgetting and overfitting.
+        We propose <strong>Elastic Test-Time Training (ETTT)</strong> that stabilizes LaCT fast-weight updates with a
+        Fisher-weighted elastic prior, and introduce <span class="dnerf">Fast Spatial Memory</span> (FSM) —
+        an efficient and scalable 4D reconstruction model that learns spatiotemporal representations from
+        long observation sequences to render novel views at novel times.
+      </div>
+
+      <center style="margin-top: 1.5rem;">
+        <img src="static/images/teaser.png" alt="Fast Spatial Memory Teaser" style="width:70%; border-radius:6px;">
+      </center>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== ABSTRACT ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Large Chunk Test-Time Training (LaCT) has shown strong performance on long-context 3D reconstruction,
+            but its fully plastic inference-time updates remain vulnerable to catastrophic forgetting and overfitting.
+            As a result, LaCT is typically instantiated with a single large chunk spanning the full input sequence,
+            falling short of the broader goal of handling arbitrarily long sequences in a single pass.
+            We propose <em>Elastic Test-Time Training</em> inspired by elastic weight consolidation, that stabilizes
+            LaCT fast-weight updates with a Fisher-weighted elastic prior around a maintained anchor state.
+            The anchor evolves as an exponential moving average of past fast weights to balance stability and plasticity.
+            Based on this updated architecture, we introduce <span class="dnerf">Fast Spatial Memory</span> (FSM),
+            an efficient and scalable model for 4D reconstruction that learns spatiotemporal representations from
+            long observation sequences and renders novel view-time combinations.
+            We pre-trained FSM on large-scale curated 3D/4D data to capture the dynamics and semantics of complex
+            spatial environments. Extensive experiments show that FSM supports fast adaptation over long sequences
+            and delivers high-quality 3D/4D reconstruction with smaller chunks while mitigating the
+            camera-interpolation shortcut. Overall, we hope to advance LaCT beyond the bounded single-chunk setting
+            toward robust multi-chunk adaptation, a necessary step for generalization to genuinely longer sequences,
+            while substantially alleviating the activation-memory bottleneck.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== KEY INSIGHTS & METHOD ===================== -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+
+        <h2 class="title is-3">Key Insights</h2>
+        <div class="content has-text-justified">
+          <ol>
+            <li>
+              <strong>Elastic Test-Time Training (ETTT).</strong>
+              We introduce a <em>consolidate</em> operator on top of LaCT's fast-weight update, inspired by
+              Elastic Weight Consolidation (EWC) in continual learning. Each LaCET block maintains anchor weights
+              and tracks per-parameter importance via an online Fisher-style statistic. During inference, important
+              parameters are softly pulled back toward their anchors while less critical ones adapt freely —
+              transforming the base transformer into a fast, self-refining yet elastic 4D learner.
+            </li>
+            <li>
+              <strong>LaCET mitigates camera-interpolation shortcuts.</strong>
+              Standard LaCT exploits short-range temporal redundancy (frame interpolation) rather than learning
+              true view-conditioned 4D representations. LaCET's elastic prior penalizes cumulative fast-weight drift
+              relative to a dynamically evolving anchor, substantially reducing this shortcut and improving
+              generalization under sparse and out-of-distribution inputs.
+            </li>
+            <li>
+              <strong>Scalable 4D pretraining.</strong>
+              <span class="dnerf">Fast Spatial Memory</span> is pretrained on a curated mixture of 3D/4D datasets
+              (RealEstate10K, DL3DV, PointOdyssey, Spring, DynamicReplica, Multi-Cam Video, Stereo4D) using a
+              long-context curriculum that gradually increases resolution, temporal span, and input density.
+              FSM is the first large-scale feedforward 4D model that accepts arbitrary view-time inputs and
+              renders arbitrary novel view-time combinations.
+            </li>
+          </ol>
+        </div>
+
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            <span class="dnerf">Fast Spatial Memory</span> adopts an end-to-end feedforward network that
+            patchifies posed images and augments them with Plücker ray maps and timestamp embeddings to form
+            visual tokens. These tokens are processed by a stack of <strong>LaCET blocks</strong> — our novel
+            Large-Chunk Elastic Test-Time Training backbone.
+          </p>
+          <p>
+            Each LaCET block maintains two sets of parameters: <em>fast weights</em> (adapted per-scene at
+            inference) and <em>anchor weights</em> (a stable EMA reference). During a forward pass, the fast
+            weights are updated chunk-by-chunk using KV statistics from input-view tokens, while the elastic
+            consolidation term softly restores critical parameters toward the anchor to prevent drift.
+            This stabilizes rapid adaptation while preserving genuine novel-view synthesis capability.
+          </p>
+          <p>
+            The model supports two decoding heads: (i) an <strong>LVSM-style</strong> lightweight linear decoder
+            for direct RGB patch prediction, and (ii) an <strong>LRM-style</strong> decoder that predicts
+            pixel-aligned 4D Gaussian Splatting primitives followed by differentiable rasterization.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="static/images/model.png" alt="Model Overview" style="width:100%; border-radius:6px;">
+          <p class="is-size-7 has-text-grey" style="margin-top:0.5rem;">
+            <strong>Left:</strong> FSM takes a sequence of posed images at arbitrary times and renders novel view-time combinations.
+            <strong>Right:</strong> The LaCET block maintains anchor and fast weights, tracking importance online to elastically consolidate updates.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== QUANTITATIVE RESULTS ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+
+        <h2 class="title is-2">Results</h2>
+
+        <!-- 4D NVS table -->
+        <h3 class="title is-4">4D Novel View Synthesis</h3>
+        <div class="content has-text-justified">
+          <p>
+            Evaluated on <strong>Stereo4D</strong> and <strong>NVIDIA Dynamic Scene</strong> benchmarks at 256&times;256 resolution.
+            Metrics are resolution-dependent; we adopt the lowest resolution for fair comparison.
+            FSM-LVSM outperforms all prior feed-forward and optimization-based 4D methods across all metrics.
+          </p>
+        </div>
+
+        <div class="table-container" style="overflow-x:auto; margin-bottom:2rem;">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" style="font-size:0.88rem;">
+            <thead>
+              <tr>
+                <th rowspan="2">Model</th>
+                <th colspan="4" style="text-align:center;">Stereo4D</th>
+                <th colspan="4" style="text-align:center;">NVIDIA</th>
+              </tr>
+              <tr>
+                <th>Res.</th><th>PSNR&uarr;</th><th>LPIPS&darr;</th><th>SSIM&uarr;</th>
+                <th>Res.</th><th>PSNR&uarr;</th><th>LPIPS&darr;</th><th>SSIM&uarr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="9" style="background:#ffffc0; text-align:center; font-style:italic;">Optimization-based</td></tr>
+              <tr>
+                <td>SoM</td>
+                <td colspan="4" style="text-align:center; color:#888;">— OOT (~10 min/scene) —</td>
+                <td>379&times;672</td><td>15.30</td><td>0.509</td><td>0.317</td>
+              </tr>
+              <tr>
+                <td>MoSca</td>
+                <td colspan="4" style="text-align:center; color:#888;">— OOT (~45 min/scene) —</td>
+                <td>379&times;672</td><td>21.45</td><td>0.265</td><td>0.712</td>
+              </tr>
+              <tr><td colspan="9" style="background:#ffffc0; text-align:center; font-style:italic;">Feed-forward</td></tr>
+              <tr>
+                <td>L4GM</td>
+                <td colspan="4" style="text-align:center; color:#888;">— OOT (requires MVD prior) —</td>
+                <td>256&times;256</td><td>10.07</td><td>0.587</td><td>0.235</td>
+              </tr>
+              <tr>
+                <td>4DGT</td>
+                <td>504&times;504</td><td>24.62</td><td>0.102</td><td>0.785</td>
+                <td>504&times;504</td><td>14.13</td><td>0.640</td><td>0.131</td>
+              </tr>
+              <tr>
+                <td>MoVieS</td>
+                <td>504&times;504</td><td>27.19</td><td>0.114</td><td>0.888</td>
+                <td>379&times;672</td><td>19.16</td><td>0.315</td><td>0.514</td>
+              </tr>
+              <tr>
+                <td><strong>FSM-LRM (ours)</strong></td>
+                <td>256&times;256</td><td>27.29</td><td>0.147</td><td>0.876</td>
+                <td>256&times;256</td><td>20.17</td><td>0.337</td><td>0.567</td>
+              </tr>
+              <tr style="background:#e8f4ff;">
+                <td><strong>FSM-LVSM (ours)</strong></td>
+                <td>256&times;256</td><td><strong>32.16</strong></td><td><strong>0.043</strong></td><td><strong>0.931</strong></td>
+                <td>256&times;256</td><td><strong>23.90</strong></td><td><strong>0.105</strong></td><td><strong>0.747</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3D NVS table -->
+        <h3 class="title is-4">3D Novel View Synthesis</h3>
+        <div class="content has-text-justified">
+          <p>
+            Evaluated on <strong>DL3DV-140</strong> at 256&times;256 resolution.
+            FSM-LVSM achieves the best LPIPS and SSIM among all methods at the same resolution,
+            demonstrating that LaCET preserves strong 3D capability while adding 4D generalization.
+          </p>
+        </div>
+
+        <div class="table-container" style="overflow-x:auto; margin-bottom:2rem;">
+          <table class="table is-bordered is-striped is-narrow is-hoverable" style="font-size:0.88rem; margin:auto;">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th colspan="4" style="text-align:center;">DL3DV</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th>Res.</th><th>PSNR&uarr;</th><th>LPIPS&darr;</th><th>SSIM&uarr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="5" style="background:#ffffc0; text-align:center; font-style:italic;">Static Models</td></tr>
+              <tr><td>DepthSplat</td><td>512&times;448</td><td>17.81</td><td>0.356</td><td>0.596</td></tr>
+              <tr><td>GS-LRM</td><td>256&times;256</td><td>23.02</td><td>0.266</td><td>0.705</td></tr>
+              <tr><td>LVSM</td><td>256&times;256</td><td>23.10</td><td>0.257</td><td>0.703</td></tr>
+              <tr><td>RayZer†</td><td>256&times;256</td><td>23.72</td><td>0.222</td><td>0.733</td></tr>
+              <tr><td>LongLRM</td><td>540&times;960</td><td>24.10</td><td>0.254</td><td>0.783</td></tr>
+              <tr><td>tttLRM</td><td>540&times;960</td><td>25.07</td><td>0.215</td><td>0.822</td></tr>
+              <tr><td>tttLVSM</td><td>540&times;960</td><td><strong>26.90</strong></td><td>0.185</td><td>0.837</td></tr>
+              <tr><td><strong>FSM-LRM (ours)</strong></td><td>256&times;256</td><td>23.59</td><td>0.206</td><td>0.766</td></tr>
+              <tr style="background:#e8f4ff;">
+                <td><strong>FSM-LVSM (ours)</strong></td><td>256&times;256</td><td><u>26.69</u></td><td><strong>0.091</strong></td><td><strong>0.846</strong></td>
+              </tr>
+              <tr><td colspan="5" style="background:#ffffc0; text-align:center; font-style:italic;">Dynamic Models</td></tr>
+              <tr><td><strong>FSM-LRM (ours)</strong></td><td>256&times;256</td><td>21.89</td><td>0.314</td><td>0.692</td></tr>
+              <tr style="background:#e8f4ff;">
+                <td><strong>FSM-LVSM (ours)</strong></td><td>256&times;256</td><td>24.61</td><td>0.118</td><td>0.787</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="is-size-7 has-text-grey" style="margin-top:0.5rem;">
+            † RayZer ignores input poses and uses target reference images, placing it between pose-conditioned and pose-free approaches.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== DEMO — 3D NVS ===================== -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>3D Novel View Synthesis (DL3DV)</center></h2>
+    <center><p>FSM-LVSM renders novel views from long observation sequences on real-world static scenes.</p></center>
+    <br>
+    <div class="hero-body">
+
+      <div class="columns is-1 is-multiline is-mobile">
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/dl3dv_scene1.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/dl3dv_scene1_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/dl3dv_scene2.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/dl3dv_scene2_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/dl3dv_scene3.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/dl3dv_scene3_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/dl3dv_scene4.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/dl3dv_scene4_input.png">Input Images</a></center>
+        </div>
+      </div>
+
+      <div class="columns is-1 is-multiline is-mobile">
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/dl3dv_scene5.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/dl3dv_scene5_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/dl3dv_scene6.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/dl3dv_scene6_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/dl3dv_scene7.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/dl3dv_scene7_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/dl3dv_scene8.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/dl3dv_scene8_input.png">Input Images</a></center>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== DEMO — 4D NVS ===================== -->
+<section class="hero teaser" style="background:#fafafa;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>4D Novel View Synthesis (Stereo4D / NVIDIA)</center></h2>
+    <center><p>FSM renders novel view-time combinations from long dynamic sequences.</p></center>
+    <br>
+    <div class="hero-body">
+
+      <div class="columns is-1 is-multiline is-mobile">
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/4d_scene1.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/4d_scene1_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/4d_scene2.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/4d_scene2_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/4d_scene3.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/4d_scene3_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/4d_scene4.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/4d_scene4_input.png">Input Images</a></center>
+        </div>
+      </div>
+
+      <div class="columns is-1 is-multiline is-mobile">
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/4d_scene5.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/4d_scene5_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/4d_scene6.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/4d_scene6_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/4d_scene7.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/4d_scene7_input.png">Input Images</a></center>
+        </div>
+        <div class="column pb-0 mb-0 is-one-quarter">
+          <video src="static/videos/4d_scene8.mp4" autoplay muted loop playsinline controls height="100%"></video>
+          <center><a href="static/images/4d_scene8_input.png">Input Images</a></center>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== BIBTEX ===================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@arxiv{ma2026fastspatial,
+  title     = {Fast Spatial Memory with Scalable Elastic Test-Time Training},
+  author    = {Ma, Ziqiao and Yu, Xueyang and Zhen, Haoyu and Yang, Yuncong and Chai, Joyce and Gan, Chuang},
+  year      = {2026}
+}</code></pre>
+  </div>
+</section>
+
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built upon the
+            <a href="https://4dlrm.github.io/">4D-LRM</a> project homepage
+            (using a
+            <a href="https://github.com/vinthony/project-page-template">modified version</a>
+            of the
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>
+            from <a href="https://github.com/vinthony">vinthony</a>).
+            This website is licensed under a
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+              Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
