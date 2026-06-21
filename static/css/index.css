@@ -11,8 +11,29 @@ body {
 }
 
 .publication-venue {
-  color: #eb002a;
-  font-weight: bold;
+  margin: 1.25rem 0 1.5rem;
+  font-weight: 700;
+}
+
+.publication-institutions {
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+.publication-institutions .author-block {
+  white-space: nowrap;
+}
+
+.publication-equal {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  color: #777;
+}
+
+.publication-authors {
+  margin-top: 1.25rem;
+  line-height: 1.7;
 }
 
 .publication-awards {
@@ -21,6 +42,12 @@ body {
 
 .author-block a {
   color: inherit;
+}
+
+.publication-authors .author-block {
+  display: inline-block;
+  margin: 0 0.7em;
+  white-space: nowrap;
 }
 
 .publication-links .button {
